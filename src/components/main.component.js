@@ -17,7 +17,7 @@ const LoginURL = "https://c4id-iam-test-one.accounts400.ondemand.com/oauth2/auth
 
 
 const RedirectUrl = "https://aa4tm323i6.execute-api.eu-central-1.amazonaws.com/Prod/callbackGetTokenByCode";
-const IasClientId = "T000003";
+const IasClientId = "T000006";
 const OIDCScope = "openid";
 const CodeResponseType = "code";
 const State = "longstatestate";
