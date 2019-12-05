@@ -1,6 +1,14 @@
 import React from 'react';
 import { ThemeProvider } from '@ui5/webcomponents-react/lib/ThemeProvider';
 import { MyTable } from './table.component'
+import { Bar } from './bar.component'
+import { Me } from './me.component'
+import {
+    BrowserRouter,
+    Switch,
+    Route,
+    Link
+} from "react-router-dom";
 
 const queryString = require('query-string');
 
@@ -39,9 +47,23 @@ export class MainComponent extends React.Component {
     render() {
         return (
             window.sessionStorage.getItem("id_token") &&
-            <ThemeProvider withToastContainer>
-                <MyTable />
-            </ThemeProvider>
+            <BrowserRouter>
+                <ThemeProvider withToastContainer>
+                    <div style={{ height: "100%" }}>
+                        <Bar />
+                        <div style={{ width: "100%" }}>
+                            <Switch>
+                                <Route exact path="/">
+                                    <MyTable />
+                                </Route>
+                                <Route path="/me">
+                                    <Me />
+                                </Route>
+                            </Switch>
+                        </div>
+                    </div>
+                </ThemeProvider>
+            </BrowserRouter>
         )
     }
 
