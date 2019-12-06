@@ -1,20 +1,28 @@
+var rp = require('request-promise');
+
+
 export const getIsAllowed = async (token, action, service) => {
 
     const url = `http://localhost:8080/query`;
+
     const query = `{isAllowed(` +
         `token: "` + token + `",` +
         `action: "` + action + `",` +
         `service: "` + service + `")}`
-    console.log(JSON.stringify({
-        query: query,
-    }))
-    return (await (await fetch(url, {
+
+    var options = {
         method: 'POST',
-        headers: new Headers({ 'content-type': 'application/json' }),
-        body: JSON.stringify({
+        uri: 'http://localhost:8080/query',
+        headers: {
+            'content-type': 'application/json'
+        },
+        body: {
             query: query,
-        }),
-    })).json()).data.isAllowed
+        },
+        json: true // Automatically parses the JSON string in the response
+    };
+
+    return (await rp(options)).data.isAllowed
 }
 
 //{isAllowed(token: "", action: "", service: "")}
