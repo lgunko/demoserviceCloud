@@ -1,6 +1,6 @@
 export const getIsAllowed = async (token, action, service) => {
 
-    const url = `http://localhost:8080/query`;
+    const url = `http://opaagent-1033655436.eu-central-1.elb.amazonaws.com/query`;
     const query = `{isAllowed(` +
         `token: "` + token + `",` +
         `action: "` + action + `",` +
