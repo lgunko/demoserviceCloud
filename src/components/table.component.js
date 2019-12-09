@@ -23,10 +23,11 @@ export class MyTable extends React.Component {
 
     componentDidMount() {
         (async () => {
-            this.setState({ ViewAllServiceOrders: await getIsAllowed(window.sessionStorage.getItem("id_token"), "ViewAllServiceOrders", "SAP Service Cloud") })
-            this.setState({ ViewCustomerData: await getIsAllowed(window.sessionStorage.getItem("id_token"), "ViewCustomerData", "SAP Service Cloud") })
-            this.setState({ CreateServiceOrder: await getIsAllowed(window.sessionStorage.getItem("id_token"), "CreateServiceOrder", "SAP Service Cloud") })
-            this.setState({ ViewServiceOrdersAssignedToMe: await getIsAllowed(window.sessionStorage.getItem("id_token"), "ViewServiceOrdersAssignedToMe", "SAP Service Cloud") })
+            let [ViewAllServiceOrders, ViewCustomerData, CreateServiceOrder, ViewServiceOrdersAssignedToMe] = await Promise.all([getIsAllowed(window.sessionStorage.getItem("id_token"), "ViewAllServiceOrders", "SAP Service Cloud"), getIsAllowed(window.sessionStorage.getItem("id_token"), "ViewCustomerData", "SAP Service Cloud"), getIsAllowed(window.sessionStorage.getItem("id_token"), "CreateServiceOrder", "SAP Service Cloud"), getIsAllowed(window.sessionStorage.getItem("id_token"), "ViewServiceOrdersAssignedToMe", "SAP Service Cloud")])
+            this.setState({ ViewAllServiceOrders: ViewAllServiceOrders })
+            this.setState({ ViewCustomerData: ViewCustomerData })
+            this.setState({ CreateServiceOrder: CreateServiceOrder })
+            this.setState({ ViewServiceOrdersAssignedToMe: ViewServiceOrdersAssignedToMe })
         })()
     }
 
