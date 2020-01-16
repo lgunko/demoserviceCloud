@@ -1,6 +1,5 @@
 export const getIsAllowed = async (token, action, service) => {
-
-    const url = `https://aa4tm323i6.execute-api.eu-central-1.amazonaws.com/Prod/query`;
+    const url = `https://je9b04hf24.execute-api.eu-central-1.amazonaws.com/stage/query`;
     const query = `{isAllowed(` +
         `token: "` + token + `",` +
         `action: "` + action + `",` +
